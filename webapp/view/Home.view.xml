@@ -1,0 +1,113 @@
+<mvc:View
+    xmlns:core="sap.ui.core"
+    controllerName="com.dhenskript.defecttracker.controller.Home"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:f="sap.f"
+    xmlns:grid="sap.ui.layout.cssgrid"
+    xmlns:u="sap.ui.unified"
+    displayBlock="true"
+    height="100%"
+    width="100%"
+>
+    <Page
+        id="home"
+        title="Defect Tracker +"
+        titleAlignment="Center"
+    >
+        <content>
+            <Panel
+                expandable="true"
+                expanded="false"
+                headerText="Team Members"
+            >
+                <content>
+                    <f:GridList
+                        headerText="Fiori / OBC Team"
+                        class="sapUiSmallMargin"
+                        items="{/users}"
+                    >
+                        <f:customLayout>
+                            <grid:GridBoxLayout boxWidth="19rem" />
+                        </f:customLayout>
+
+                        <f:GridListItem class="sapUiSmallMargin">
+                            <VBox
+                                height="100%"
+                                justifyContent="SpaceBetween"
+                            >
+                                <VBox
+                                    class="sapUiSmallMargin"
+                                    width="100%"
+                                >
+                                    <HBox
+                                        justifyContent="Center"
+                                        alignItems="Center"
+                                        class="sapUiSmallMargin"
+                                    >
+                                        <core:Icon
+                                            src="sap-icon://customer"
+                                            size="3rem"
+                                        />
+                                    </HBox>
+                                    <Title
+                                        text="{name}"
+                                        wrapping="true"
+                                    />
+                                    <Label
+                                        text="{emailId}"
+                                        wrapping="true"
+                                        class="sapUiTinyMarginBottom"
+                                    />
+                                    <Text
+                                        text="{role}"
+                                        wrapping="true"
+                                    />
+                                </VBox>
+                                <OverflowToolbar design="Solid">
+                                    <ObjectStatus
+                                        text="Online"
+                                        state="Success"
+                                    />
+                                    <ToolbarSpacer />
+                                    <Button
+                                        icon="sap-icon://message-information"
+                                        text="View Defects"
+                                        type="Transparent"
+                                        press="onTilePress"
+                                    />
+                                </OverflowToolbar>
+                            </VBox>
+                        </f:GridListItem>
+                    </f:GridList>
+                </content>
+            </Panel>
+            <Panel
+                expandable="true"
+                expanded="false"
+                headerText="Defects Associated"
+            >
+                <content>
+                    <Table />
+                </content>
+            </Panel>
+        </content>
+        <footer>
+            <OverflowToolbar design="Solid">
+                <ToolbarSpacer />
+                <u:FileUploader
+                    id="idfileUploader"
+                    change="onFileUpload"
+                    style="Emphasized"
+                    fileType="xls,xlsx"
+                    placeholder="Choose a file"
+                />
+                <Button
+                    text="Upload Defect List"
+                    press="onUploadButtonClick"
+                    type="Transparent"
+                />
+            </OverflowToolbar>
+        </footer>
+    </Page>
+</mvc:View>
